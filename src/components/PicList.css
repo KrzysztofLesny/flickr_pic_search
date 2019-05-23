@@ -1,0 +1,26 @@
+.container__pics {
+    border-top: 4px solid black;
+    display: block;
+    position: relative;
+    margin: 50px auto;
+    width: 1000px;
+}
+
+.pics__title {
+    position: absolute;
+    font-size: 15px;
+    top: -13px;
+    left: 50%;
+    font-weight: bolder;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 1;
+    display: inline-block;
+    background-color: white;
+    padding: 0px 25px;
+    transform: translateX(-50%);
+}
+
+.pics__picture {
+    margin: 30px 5px 0px 5px;
+}
