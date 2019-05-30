@@ -7,11 +7,10 @@ import SearchForm from './SearchForm';
 class App extends Component {
   state = {
     dataID: 0,
-    searchValue: '',
     data: [],
   }
 
-  addData = data => {
+  addData = (data, searchValue) => {
     let pics = [];
     for (let i = 0; i < data.length; i++) {
       let pic = {
@@ -23,7 +22,7 @@ class App extends Component {
     }
     let datum = {
       id: this.state.dataID,
-      name: this.state.searchValue,
+      name: searchValue,
       pics: pics,
     };
     this.setState(prevState => ({
@@ -33,43 +32,45 @@ class App extends Component {
     }))
   }
 
-  seachValueChange = e => {
-    this.setState({
-      searchValue: e.target.value,
-    })
-  }
-
-  searchSubmit = e => {
-    e.preventDefault();
+  addCollection = (searchValue) => {
     const flickerAPI = "http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
     $.getJSON(flickerAPI, {
-      tags: this.state.searchValue,
+      tags: searchValue,
       tagmode: "any",
       format: "json"
     }).done(data => {
       data = data.items.slice(0, 4);
-      this.addData(data);
+      this.addData(data, searchValue);
     }).fail(err => {
       console.log(`error: ${err}`);
     });
+    return true
+  }
+
+  deleteCollection = id => {
+    let data = [...this.state.data];
+    data = data.filter(collection => collection.id !== id);
+    this.setState({
+      data
+    })
   }
 
   render() {
     const picsToShow = this.state.data.map(datum => (
       <PicList
         key={datum.id}
+        id={datum.id}
         name={datum.name}
         pics={datum.pics}
+        delete={this.deleteCollection}
       />
     ))
     return (
       <div className="App">
         <SearchForm
-          change={this.seachValueChange}
-          value={this.state.searchValue}
-          submit={this.searchSubmit}
+          addCollection={this.addCollection}
         />
-        {this.state.dataID ? picsToShow : <p>type search term</p>}
+        {this.state.data.length ? picsToShow : <span className="prompt">input search inquiry</span>}
       </div>
     );
   }
