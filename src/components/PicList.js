@@ -16,7 +16,7 @@ const PicList = (props) => {
         <div className="container__pics">
             <p className="pics__title">{props.name}</p>
             <div>{hasPics ? pics : <NoPic deleteCollection={props.delete} id={props.id} />}</div>
-            {hasPics && <button onClick={() => props.delete(props.id)} className="pics__delete">delete collection</button>}
+            {hasPics && <button onClick={() => props.delete(props.id)} className="pics__delete">X</button>}
         </div >
     );
 }

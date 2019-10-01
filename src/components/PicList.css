@@ -5,6 +5,7 @@
     margin: 50px auto;
     width: 1000px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-bottom: 20px;
 }
 
 .pics__title {
@@ -28,10 +29,18 @@
 }
 
 .pics__delete {
+    position: absolute;
     cursor: pointer;
-    color: red;
-    background-color: transparent;
+    color: white;
+    background-color: red;
     margin: 5px 0 10px 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    bottom: -30px;
+    right: 0;
+    font-size: 20px;
+    font-weight: 700;
 }
 
 .pics__none {
