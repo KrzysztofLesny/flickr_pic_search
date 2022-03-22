@@ -69,8 +69,7 @@ class App extends Component {
         <SearchForm
           addCollection={this.addCollection}
         />
-        {this.state.data.length ? picsToShow : <span className="prompt">input search inquiry
-        </span>}
+        {this.state.data.length ? picsToShow : <span className="prompt">input search inquiry</span>}
       </div>
     );
   }
